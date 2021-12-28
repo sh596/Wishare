@@ -3,6 +3,7 @@ package com.example.myapplication.screen
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
@@ -44,28 +45,36 @@ class LoginActivity : AppCompatActivity() {
     }
     fun logIn(){
         val intent = googleClient?.signInIntent
-        startActivityForResult(intent,LOGIN_CODE)
+        startActivityForResult(intent, LOGIN_CODE)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
+        Log.d("google login", "-2")
         if (requestCode == LOGIN_CODE) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             try {
                 val account = task.getResult(ApiException::class.java)!!
+                Log.d("google login", "0")
                 firebaseAuthWithGoogle(account)
             } catch (e: ApiException) {
+                Log.d("google login", "-1")
             }
         }
     }
     private fun firebaseAuthWithGoogle(account: GoogleSignInAccount?){
+        Log.d("google login", "1")
         var credential = GoogleAuthProvider.getCredential(account?.idToken, null)
+        Log.d("google login", "2")
         FireBaseUtil.getAuth().signInWithCredential(credential)?.addOnCompleteListener {
             task ->
             if(task.isSuccessful){
                 //로그인 성공 시
+                Log.d("google login", "성공")
+                Toast.makeText(this,"로그인에 성공하였습니다", Toast.LENGTH_SHORT).show()
             }else{
+                Log.d("google login", "실패")
                 Toast.makeText(this,"로그인에 실패하였습니다", Toast.LENGTH_SHORT).show()
             }
 

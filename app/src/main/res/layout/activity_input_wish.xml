@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/txt_inputWish_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="소원 적기"
+        android:textSize="16dp"
+
+        android:layout_marginTop="62dp"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guide_inputWish_left"
+        />
+
+    <EditText
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        android:background="@drawable/default_round_10"
+        android:elevation="5dp"
+        android:lines="8"
+        android:gravity="top"
+
+        android:layout_marginTop="21dp"
+
+        app:layout_constraintTop_toBottomOf="@+id/txt_inputWish_title"
+        app:layout_constraintStart_toStartOf="@id/guide_inputWish_left"
+        app:layout_constraintEnd_toEndOf="@id/guide_inputWish_right"
+        />
+
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        android:text="작성"
+
+        android:background="@drawable/default_round_10"
+
+
+        android:layout_marginBottom="40dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guide_inputWish_left"
+        app:layout_constraintEnd_toEndOf="@id/guide_inputWish_right"
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guide_inputWish_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="24dp"
+        />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guide_inputWish_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="24dp"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

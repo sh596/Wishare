@@ -64,7 +64,6 @@ class LoginActivity : AppCompatActivity() {
         FireBaseUtil.getAuth().signInWithCredential(credential)?.addOnCompleteListener(this) {
             task ->
             if(task.isSuccessful){
-                startActivity(Intent(this,MyWishActivity::class.java))
                 finish()
             }else{
                 Toast.makeText(this,"로그인에 실패하였습니다", Toast.LENGTH_SHORT).show()

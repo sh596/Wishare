@@ -4,12 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <variable
+            name="viewModel"
+            type="com.example.myapplication.screen.mywish.MyWishViewModel" />
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#f3f3f3"
         tools:context=".screen.mywish.MyWishActivity">
 
         <TextView
@@ -27,11 +31,15 @@
             app:layout_constraintLeft_toLeftOf="parent"/>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/myWishRecycler"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            tools:listitem="@layout/item_wish"
             app:layout_constraintTop_toBottomOf="@id/myWishTitle"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintVertical_bias="0.0"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

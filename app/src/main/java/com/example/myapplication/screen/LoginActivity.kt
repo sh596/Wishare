@@ -1,8 +1,10 @@
 package com.example.myapplication.screen
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
@@ -65,6 +67,7 @@ class LoginActivity : AppCompatActivity() {
         FireBaseUtil.getAuth().signInWithCredential(credential)?.addOnCompleteListener(this) {
             task ->
             if(task.isSuccessful){
+                Log.d(TAG, "firebaseAuthWithGoogle: $task")
                 Toast.makeText(this,"complete", Toast.LENGTH_SHORT).show()
                 startActivity(Intent(this,MyWishActivity::class.java))
             }else{

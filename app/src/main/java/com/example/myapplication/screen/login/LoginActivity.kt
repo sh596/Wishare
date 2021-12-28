@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityLoginBinding
+import com.example.myapplication.screen.main.MainActivity
 import com.example.myapplication.util.FireBaseUtil
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -63,6 +64,9 @@ class LoginActivity : AppCompatActivity() {
             if(task.isSuccessful){
                 //로그인 성공 시
                 Toast.makeText(this,"로그인에 성공하였습니다", Toast.LENGTH_SHORT).show()
+
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
             }else{
                 Toast.makeText(this,"로그인에 실패하였습니다", Toast.LENGTH_SHORT).show()
             }

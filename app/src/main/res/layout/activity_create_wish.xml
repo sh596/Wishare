@@ -6,62 +6,66 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.myapplication.screen.mywish.MyWishViewModel" />
-
+            type="com.example.myapplication.screen.createwish.CreateWishViewModel" />
         <variable
             name="activity"
-            type="com.example.myapplication.screen.mywish.MyWishActivity" />
+            type="com.example.myapplication.screen.createwish.CreateWishActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#f3f3f3"
-        tools:context=".screen.mywish.MyWishActivity">
+        tools:context=".screen.createwish.CreateWishActivity"
+        android:background="#f3f3f3">
 
         <TextView
-            android:id="@+id/myWishTitle"
+            android:id="@+id/createWishTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
             android:layout_marginLeft="34dp"
-            android:text="나의 소원"
-            android:textSize="16sp"
+            android:text="소원 적기"
+            android:textSize="16dp"
             android:textColor="#3d3d3d"
             android:fontFamily="@font/notosanskrm"
             android:includeFontPadding="false"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/myWishRecycler"
+        <EditText
+            android:gravity="left|top"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_wish"
-            app:layout_constraintTop_toBottomOf="@id/myWishTitle"
+            android:layout_height="250dp"
+            android:layout_margin="24dp"
+            android:padding="24dp"
+            android:background="@drawable/round_background"
+            android:hint="소원을 적어주세요"
+            android:text="@={viewModel.wishText}"
+            android:textSize="16sp"
+            android:textColor="#3d3d3d"
+            android:fontFamily="@font/notosanskrm"
+            android:includeFontPadding="false"
+            android:elevation="5dp"
+            android:maxLines="15"
+            app:layout_constraintTop_toBottomOf="@id/createWishTitle"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/myWishAccessButton"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintVertical_bias="0.0"/>
+            />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/myWishAccessButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginRight="24dp"
             android:layout_marginBottom="40dp"
             android:layout_marginLeft="24dp"
             android:background="@drawable/round_background_color"
-            android:text="소원 적기"
+            android:text="작성"
             android:textSize="16sp"
             android:textColor="#ffffff"
             android:fontFamily="@font/notosanskrm"
             android:includeFontPadding="false"
-            android:onClick="@{activity::accessCreateWish}"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"/>
+            android:onClick="@{activity::createWish}"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

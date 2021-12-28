@@ -14,7 +14,7 @@ class MyWishActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMyWishBinding
 
     private val viewModel  by lazy {
-        ViewModelProvider(this)[MyWishViewModel::class.java]
+        ViewModelProvider(this, MyWishViewModelFactory(this))[MyWishViewModel::class.java]
     }
 
     private val adapter = MyWishAdapter()
@@ -24,10 +24,15 @@ class MyWishActivity : AppCompatActivity() {
         setContentView(R.layout.activity_my_wish)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_my_wish)
         binding.viewModel
+        binding.activity = this
         binding.lifecycleOwner = this
 
         binding.myWishRecycler.adapter = adapter
-        adapter.setItem(viewModel.myWishList.value)
+
+        viewModel.myWishList.observe(this){
+            adapter.setItem(viewModel.myWishList.value!!)
+        }
+
     }
     fun accessCreateWish(view: View){
         startActivity(Intent(this, CreateWishActivity::class.java))

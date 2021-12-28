@@ -1,4 +1,4 @@
-package com.example.myapplication.screen
+package com.example.myapplication.screen.login
 
 import android.content.ContentValues.TAG
 import android.content.Intent
@@ -12,14 +12,11 @@ import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityLoginBinding
 import com.example.myapplication.screen.mywish.MyWishActivity
 import com.example.myapplication.util.FireBaseUtil
-import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
-import com.google.android.gms.common.api.GoogleApiClient
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 
 class LoginActivity : AppCompatActivity() {
@@ -46,8 +43,6 @@ class LoginActivity : AppCompatActivity() {
 
     }
     fun logIn(){
-        val intent = googleClient?.signInIntent
-        startActivityForResult(intent,LOGIN_CODE)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -67,8 +62,6 @@ class LoginActivity : AppCompatActivity() {
         FireBaseUtil.getAuth().signInWithCredential(credential)?.addOnCompleteListener(this) {
             task ->
             if(task.isSuccessful){
-                Log.d(TAG, "firebaseAuthWithGoogle: $task")
-                Toast.makeText(this,"complete", Toast.LENGTH_SHORT).show()
                 startActivity(Intent(this,MyWishActivity::class.java))
             }else{
                 Toast.makeText(this,"로그인에 실패하였습니다", Toast.LENGTH_SHORT).show()

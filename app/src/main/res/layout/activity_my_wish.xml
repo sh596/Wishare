@@ -8,6 +8,9 @@
             name="viewModel"
             type="com.example.myapplication.screen.mywish.MyWishViewModel" />
 
+        <variable
+            name="activity"
+            type="com.example.myapplication.screen.mywish.MyWishActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -33,13 +36,32 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/myWishRecycler"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/item_wish"
             app:layout_constraintTop_toBottomOf="@id/myWishTitle"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/myWishAccessButton"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintVertical_bias="0.0"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/myWishAccessButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="24dp"
+            android:layout_marginBottom="40dp"
+            android:layout_marginLeft="24dp"
+            android:background="@drawable/round_background_color"
+            android:text="소원 적기"
+            android:textSize="16sp"
+            android:textColor="#ffffff"
+            android:fontFamily="@font/notosanskrm"
+            android:includeFontPadding="false"
+            android:onClick="@{activity::accessCreateWish}"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -8,9 +8,12 @@
         <entry key="..\:/Users/Zen/AndroidStudioProjects/WishareProject4/app/src/main/res/drawable/round_background.xml" value="0.1109375" />
         <entry key="..\:/Users/Zen/AndroidStudioProjects/WishareProject4/app/src/main/res/drawable/round_background_color.xml" value="0.1109375" />
         <entry key="..\:/Users/Zen/AndroidStudioProjects/WishareProject4/app/src/main/res/layout/activity_create_wish.xml" value="0.2" />
+        <entry key="..\:/Users/Zen/AndroidStudioProjects/WishareProject4/app/src/main/res/layout/activity_input_wish.xml" value="0.10733695652173914" />
         <entry key="..\:/Users/Zen/AndroidStudioProjects/WishareProject4/app/src/main/res/layout/activity_main.xml" value="0.11367753623188406" />
-        <entry key="..\:/Users/Zen/AndroidStudioProjects/WishareProject4/app/src/main/res/layout/activity_my_wish.xml" value="0.264" />
+        <entry key="..\:/Users/Zen/AndroidStudioProjects/WishareProject4/app/src/main/res/layout/activity_my_wish.xml" value="0.152" />
+        <entry key="..\:/Users/Zen/AndroidStudioProjects/WishareProject4/app/src/main/res/layout/activity_my_wish_list.xml" value="0.2" />
         <entry key="..\:/Users/Zen/AndroidStudioProjects/WishareProject4/app/src/main/res/layout/item_wish.xml" value="0.176" />
+        <entry key="..\:/Users/Zen/AndroidStudioProjects/WishareProject4/app/src/main/res/layout/layout_my_wish_list_item.xml" value="0.10733695652173914" />
       </map>
     </option>
   </component>

@@ -4,6 +4,7 @@ plugins {
     id 'com.google.gms.google-services'
 }
 
+apply plugin: 'kotlin-kapt'
 android {
     compileSdk 31
 
@@ -40,7 +41,7 @@ dependencies {
 
     implementation("androidx.room:room-runtime:$roomVersion")
     annotationProcessor("androidx.room:room-compiler:$roomVersion")
-
+    kapt("androidx.room:room-compiler:$roomVersion")
     implementation 'com.google.android.gms:play-services-auth:20.0.0'
 
     def lifecycle_version = "2.4.0"

@@ -4,13 +4,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.databinding.ItemWishBinding
+import com.example.myapplication.util.roomDB.Wish
 
 class MyWishAdapter: RecyclerView.Adapter<MyWishAdapter.ViewHolder>() {
-    private var list = ArrayList<String>()
+    private var list = ArrayList<Wish>()
 
     inner class ViewHolder(private val binding: ItemWishBinding): RecyclerView.ViewHolder(binding.root) {
-        fun onBind(item : String){
-            binding.itemWishContent.text = item
+        fun onBind(item : Wish){
+            binding.itemWishContent.text = item.wishContent
         }
     }
 
@@ -29,8 +30,8 @@ class MyWishAdapter: RecyclerView.Adapter<MyWishAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int = list.size
 
-    fun setItem(list: ArrayList<String>?){
-        this.list.addAll(list!!)
+    fun setItem(list: ArrayList<Wish>){
+        this.list.addAll(list)
         notifyDataSetChanged()
     }
 }

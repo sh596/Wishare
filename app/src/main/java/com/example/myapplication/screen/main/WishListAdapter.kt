@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
 import com.example.myapplication.util.roomDB.Wish
 
-class WishListAdapter(val items : MutableList<Wish>) : RecyclerView.Adapter<WishListAdapter.WishListAdapterHolder>() {
+class WishListAdapter(val items : MutableList<String>) : RecyclerView.Adapter<WishListAdapter.WishListAdapterHolder>() {
     class WishListAdapterHolder(val view : View) : RecyclerView.ViewHolder(view) {
         val content = view.findViewById<TextView>(R.id.txt_wishList_title)
     }
@@ -20,7 +20,7 @@ class WishListAdapter(val items : MutableList<Wish>) : RecyclerView.Adapter<Wish
     }
 
     override fun onBindViewHolder(holder: WishListAdapterHolder, position: Int) {
-        holder.content.text = items[position].wishContent
+        holder.content.text = items[position]//.wishContent
     }
 
     override fun getItemCount(): Int {

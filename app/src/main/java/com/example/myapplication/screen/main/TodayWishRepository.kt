@@ -1,6 +1,7 @@
 package com.example.myapplication.screen.main
 
 import android.util.Log
+import com.example.myapplication.util.roomDB.RoomUtil.elseMine
 import com.example.myapplication.util.roomDB.RoomUtil.mine
 import com.example.myapplication.util.roomDB.Wish
 import com.example.myapplication.util.roomDB.WishDao
@@ -23,12 +24,17 @@ class TodayWishRepository(private val wishDao : WishDao) : TodayWishRepositoryIn
     }
 
     override suspend fun getAlreadyWishList(): Array<Wish> {
-        return wishDao.getMineWish(mine)
+        return wishDao.getAll()
     }
 
-    override suspend fun getWish(index: Int): String? {
+    override suspend fun getWishElse(): Array<Wish> {
+        return wishDao.getMineWish(elseMine)
+    }
+
+    override suspend fun getWish(index: Int): String {
         var result : String? = null
 
+        Log.d("randomIndex", index.toString())
         db.collection("wish").document(index.toString()).get()
             .addOnSuccessListener {
                 if(it.data != null) {
@@ -36,7 +42,7 @@ class TodayWishRepository(private val wishDao : WishDao) : TodayWishRepositoryIn
                 }
             }.await()
 
-        return result
+        return result!!
     }
 
     override suspend fun getAllWish(): List<String> {
@@ -53,5 +59,9 @@ class TodayWishRepository(private val wishDao : WishDao) : TodayWishRepositoryIn
             }.await()
 
         return result
+    }
+
+    override suspend fun saveGotWish(wish : Wish) {
+        wishDao.insert(wish)
     }
 }

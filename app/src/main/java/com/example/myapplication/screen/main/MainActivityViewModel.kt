@@ -8,25 +8,28 @@ import java.util.Random
 class MainActivityViewModel(private val wishDao: WishDao) : ViewModel() {
     val repository = TodayWishRepository(wishDao)
 
-    suspend fun getAlreadyWishList() : Array<Wish>{
+    suspend fun getAlreadyWishList() : Array<Wish> {
         return repository.getAlreadyWishList()
-    }
+    } //Room에 있는 모든 소원을 다 가져온다
 
     suspend fun getTodayWish() : Wish{
         val maxCount = repository.getWishCount()
         val alreadyGetWishList = repository.getAlreadyWishList()
 
-        return Wish(wishContent=choiceWish(maxCount, alreadyGetWishList))
-    }
+        val choiceWish = Wish(wishContent=choiceWish(maxCount, alreadyGetWishList))
+        repository.saveGotWish(choiceWish)
+
+        return choiceWish
+    }//오늘의 소원을 하나 뽑고 저장한다.
 
     suspend fun choiceWish(maxCount : Int, wishList : Array<Wish>) : String{
-        val currentWishIndex = Random().nextInt(maxCount + 1)
-        var currentWish : String? = repository.getWish(currentWishIndex)
+        val currentWishIndex = Random().nextInt(maxCount)
+        var currentWish : String = repository.getWish(currentWishIndex)
 
-        if(currentWish == null || wishList.any { it.wishContent == currentWish }){
+        if(wishList.any { it.wishContent == currentWish }){
             currentWish = choiceWish(maxCount, wishList)
         }
 
         return currentWish
-    }
+    } //오늘의 소원을 뽑는다.
 }

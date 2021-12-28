@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [Wish::class], version = 2)
+@Database(entities = [Wish::class], version = 3)
 abstract class WishDatabase : RoomDatabase() {
     abstract fun wishDao() : WishDao
     companion object {

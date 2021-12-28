@@ -10,6 +10,7 @@ import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityLoginBinding
 import com.example.myapplication.screen.main.MainActivity
 import com.example.myapplication.util.FireBaseUtil
+import com.example.myapplication.util.roomDB.WishDatabase
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient

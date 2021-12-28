@@ -15,4 +15,7 @@ interface WishDao {
 
     @Insert
     fun insert(vararg wish: Wish)
+
+    @Query("DELETE FROM wishs")
+    fun clear()
 }

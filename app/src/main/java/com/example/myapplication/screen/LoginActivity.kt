@@ -14,6 +14,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
@@ -21,8 +22,8 @@ import com.google.firebase.auth.GoogleAuthProvider
 class LoginActivity : AppCompatActivity() {
 
     private val LOGIN_CODE = 101
-    lateinit var binding: ActivityLoginBinding
-    private var googleClient: GoogleSignInClient? = null
+    private lateinit var binding: ActivityLoginBinding
+    private lateinit var googleClient: GoogleSignInClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +31,7 @@ class LoginActivity : AppCompatActivity() {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
 
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN)
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
@@ -48,16 +49,17 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode == LOGIN_CODE) {
-            var result = Auth.GoogleSignInApi.getSignInResultFromIntent(data!!)!!
 
-            if(result.isSuccess) {
-                var account = result.signInAccount
+        if (requestCode == LOGIN_CODE) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            try {
+                val account = task.getResult(ApiException::class.java)!!
                 firebaseAuthWithGoogle(account)
+            } catch (e: ApiException) {
             }
         }
     }
-    fun firebaseAuthWithGoogle(account: GoogleSignInAccount?){
+    private fun firebaseAuthWithGoogle(account: GoogleSignInAccount?){
         var credential = GoogleAuthProvider.getCredential(account?.idToken, null)
         FireBaseUtil.getAuth().signInWithCredential(credential)?.addOnCompleteListener {
             task ->

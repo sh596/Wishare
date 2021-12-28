@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var viewModel: MainActivityViewModel
 
     lateinit var wishDao : WishDao
+    lateinit var wishListAdapter : WishListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,18 +31,36 @@ class MainActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
 
 
+        CoroutineScope(Dispatchers.IO).launch {
+            val wishList = viewModel.getAlreadyWishList()
+            if(wishList.isEmpty()) {
+                wishListAdapter = WishListAdapter(mutableListOf())
+            }   else{
+                wishListAdapter = WishListAdapter(wishList.toList() as MutableList<Wish>)
+            }
+
+            Log.d("todayWish 리스트 전체", wishList.toString())
+
+
+            withContext(Dispatchers.Main){
+
+                wishListAdapter.notifyItemInserted(0)
+                binding.recyclerMainWishList.adapter = wishListAdapter
+            }
+        }
 
         binding.btnMainToDayWish.setOnClickListener{
-            Log.d("todayWish", "onClick Start")
             GlobalScope.launch(Dispatchers.IO) {
-                Log.d("todayWish", "scope Start")
                 val todayWish = viewModel.getTodayWish()
-
                 Log.d("todayWish", todayWish.toString())
 
-                Log.d("todayWish", "scope End")
+                withContext(Dispatchers.Main){
+                    Log.d("todayWish", "넣기 시작")
+                    wishListAdapter.items.add(todayWish)
+                    wishListAdapter.notifyItemInserted(0)
+                    Log.d("todayWish", "끝")
+                }
             }
-            Log.d("todayWish", "onClick End")
         }
     }
 }

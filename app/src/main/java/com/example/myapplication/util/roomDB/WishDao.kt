@@ -10,9 +10,9 @@ interface WishDao {
     @Query("SELECT * FROM wishs")
     fun getAll() : Array<Wish>
 
+    @Query("SELECT * FROM wishs WHERE mine = :mine")
+    fun getMineWish(mine : Int) : Array<Wish>
+
     @Insert
     fun insert(vararg wish: Wish)
-
-    @Delete
-    fun delete(wish: Wish)
 }

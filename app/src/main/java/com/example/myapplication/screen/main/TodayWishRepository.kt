@@ -1,6 +1,7 @@
 package com.example.myapplication.screen.main
 
 import android.util.Log
+import com.example.myapplication.util.roomDB.RoomUtil.mine
 import com.example.myapplication.util.roomDB.Wish
 import com.example.myapplication.util.roomDB.WishDao
 import com.google.firebase.firestore.FirebaseFirestore
@@ -14,7 +15,7 @@ class TodayWishRepository(private val wishDao : WishDao) : TodayWishRepositoryIn
 
         db.collection("wish").document("information").get()
             .addOnSuccessListener {
-                maxCount = Integer.parseInt(it.data!!["value"].toString())
+                maxCount = Integer.parseInt(it.data!!["information"].toString())
             }.await()
 
         Log.d("todayWish", "최대값 가져옴")
@@ -22,14 +23,20 @@ class TodayWishRepository(private val wishDao : WishDao) : TodayWishRepositoryIn
     }
 
     override suspend fun getAlreadyWishList(): Array<Wish> {
-        return wishDao.getAll()
+        return wishDao.getMineWish(mine)
     }
 
-    override suspend fun getWish(index: Int): String {
-        val allWish = getAllWish()
+    override suspend fun getWish(index: Int): String? {
+        var result : String? = null
 
-        Log.d("todayWish", "$allWish")
-        return allWish[index]
+        db.collection("wish").document(index.toString()).get()
+            .addOnSuccessListener {
+                if(it.data != null) {
+                    result = (it.data!!.get("wish") as Map<String, String>)["value"]
+                }
+            }.await()
+
+        return result
     }
 
     override suspend fun getAllWish(): List<String> {

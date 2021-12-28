@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
     id 'com.google.gms.google-services'
 }
 
@@ -36,10 +37,17 @@ android {
 }
 
 dependencies {
+    implementation 'com.google.firebase:firebase-firestore-ktx'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.3'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.3.3'
+
+
+
     def roomVersion = "2.3.0"
 
     implementation("androidx.room:room-runtime:$roomVersion")
     annotationProcessor("androidx.room:room-compiler:$roomVersion")
+    kapt("androidx.room:room-compiler:$roomVersion")
 
     implementation 'com.google.android.gms:play-services-auth:20.0.0'
 

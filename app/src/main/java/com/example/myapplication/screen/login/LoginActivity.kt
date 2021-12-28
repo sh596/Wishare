@@ -1,23 +1,21 @@
-package com.example.myapplication.screen
+package com.example.myapplication.screen.login
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
+import android.util.Log
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityLoginBinding
-import com.example.myapplication.screen.mywish.MyWishActivity
+import com.example.myapplication.screen.main.MainActivity
 import com.example.myapplication.util.FireBaseUtil
-import com.google.android.gms.auth.api.Auth
+import com.example.myapplication.util.roomDB.WishDatabase
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
-import com.google.android.gms.common.api.GoogleApiClient
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 
 class LoginActivity : AppCompatActivity() {
@@ -45,7 +43,7 @@ class LoginActivity : AppCompatActivity() {
     }
     fun logIn(){
         val intent = googleClient?.signInIntent
-        startActivityForResult(intent,LOGIN_CODE)
+        startActivityForResult(intent, LOGIN_CODE)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -65,8 +63,10 @@ class LoginActivity : AppCompatActivity() {
         FireBaseUtil.getAuth().signInWithCredential(credential)?.addOnCompleteListener(this) {
             task ->
             if(task.isSuccessful){
-                Toast.makeText(this,"complete", Toast.LENGTH_SHORT).show()
-                startActivity(Intent(this,MyWishActivity::class.java))
+                //로그인 성공 시
+                Toast.makeText(this,"로그인에 성공하였습니다", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
             }else{
                 Toast.makeText(this,"로그인에 실패하였습니다", Toast.LENGTH_SHORT).show()
             }

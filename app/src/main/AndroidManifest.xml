@@ -12,11 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
-            android:name=".screen.mywish.MyWishActivity"
-            android:exported="true" />
-        <activity
-            android:name=".screen.LoginActivity"
-            android:exported="true">
+            android:name=".screen.login.LoginActivity"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,8 +21,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
-            android:exported="true"></activity>
+            android:name=".screen.main.MainActivity"
+            android:exported="true">
+        </activity>
     </application>
 
 </manifest>

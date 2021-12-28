@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:text="wish:are"
                 android:textSize="30sp"
-                android:textColor="#C38DFF"
+                android:textColor="@color/mainColor"
                 android:fontFamily="@font/notosanskrm"
                 android:includeFontPadding="false" />
         </LinearLayout>

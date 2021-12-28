@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityMyWishBinding
 import com.example.myapplication.screen.createwish.CreateWishActivity
+import com.example.myapplication.util.roomDB.Wish
 
 class MyWishActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMyWishBinding
@@ -17,13 +18,23 @@ class MyWishActivity : AppCompatActivity() {
         ViewModelProvider(this, MyWishViewModelFactory(this))[MyWishViewModel::class.java]
     }
 
-    private val adapter = MyWishAdapter()
+    val itemClick: (Wish) -> Unit = { item : Wish ->
+        viewModel.remove(item)
+    }
+
+    private val adapter = MyWishAdapter(itemClick)
+
+    override fun onResume() {
+        super.onResume()
+        adapter.removeAll()
+        viewModel.setList()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_wish)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_my_wish)
-        binding.viewModel
+        binding.viewModel = viewModel
         binding.activity = this
         binding.lifecycleOwner = this
 
@@ -32,7 +43,8 @@ class MyWishActivity : AppCompatActivity() {
         viewModel.myWishList.observe(this){
             adapter.setItem(viewModel.myWishList.value!!)
         }
-
+        adapter.removeAll()
+        viewModel.setList()
     }
     fun accessCreateWish(view: View){
         startActivity(Intent(this, CreateWishActivity::class.java))

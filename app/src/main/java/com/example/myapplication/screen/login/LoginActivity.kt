@@ -43,6 +43,8 @@ class LoginActivity : AppCompatActivity() {
 
     }
     fun logIn(){
+        val intent = googleClient?.signInIntent
+        startActivityForResult(intent, LOGIN_CODE)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -63,6 +65,7 @@ class LoginActivity : AppCompatActivity() {
             task ->
             if(task.isSuccessful){
                 startActivity(Intent(this,MyWishActivity::class.java))
+                finish()
             }else{
                 Toast.makeText(this,"로그인에 실패하였습니다", Toast.LENGTH_SHORT).show()
             }

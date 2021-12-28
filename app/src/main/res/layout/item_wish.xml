@@ -3,9 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <variable
-            name="viewModel"
-            type="com.example.myapplication.screen.mywish.WishItem" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -22,7 +19,6 @@
             android:id="@+id/itemWishContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{viewModel.content}"
             android:textSize="16sp"
             android:textColor="#3d3d3d"
             app:layout_constraintTop_toTopOf="parent"

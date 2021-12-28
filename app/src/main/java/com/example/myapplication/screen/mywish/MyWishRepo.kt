@@ -9,7 +9,9 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class MyWishRepo(val context: Context) : RepoInterface{
-    override suspend fun getMyWishList(): ArrayList<Wish> {
-        return WishDatabase.getInstance(context).wishDao().getMineWish(RoomUtil.mine).toCollection(ArrayList())
+    override fun getMyWishList(): ArrayList<Wish> {
+        return getList().toCollection(ArrayList())
     }
+    fun getList() = WishDatabase.getInstance(context).wishDao().getMineWish(RoomUtil.mine)
+
 }

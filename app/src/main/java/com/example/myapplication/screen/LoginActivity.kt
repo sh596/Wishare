@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityLoginBinding
+import com.example.myapplication.screen.mywish.MyWishActivity
 import com.example.myapplication.util.FireBaseUtil
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -61,10 +62,11 @@ class LoginActivity : AppCompatActivity() {
     }
     private fun firebaseAuthWithGoogle(account: GoogleSignInAccount?){
         var credential = GoogleAuthProvider.getCredential(account?.idToken, null)
-        FireBaseUtil.getAuth().signInWithCredential(credential)?.addOnCompleteListener {
+        FireBaseUtil.getAuth().signInWithCredential(credential)?.addOnCompleteListener(this) {
             task ->
             if(task.isSuccessful){
-                //로그인 성공 시
+                Toast.makeText(this,"complete", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this,MyWishActivity::class.java))
             }else{
                 Toast.makeText(this,"로그인에 실패하였습니다", Toast.LENGTH_SHORT).show()
             }

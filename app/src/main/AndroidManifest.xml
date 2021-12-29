@@ -12,8 +12,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
+            android:name=".screen.createwish.CreateWishActivity"
+            android:exported="true" />
+        <activity
+            android:name=".screen.mywish.MyWishActivity"
+            android:exported="true" />
+        <activity
             android:name=".screen.login.LoginActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

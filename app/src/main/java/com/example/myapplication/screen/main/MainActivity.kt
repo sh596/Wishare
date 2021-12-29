@@ -1,6 +1,7 @@
 package com.example.myapplication.screen.main
 
 import android.app.Activity
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +14,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityMainBinding
+import com.example.myapplication.screen.mywish.MyWishActivity
 import com.example.myapplication.util.roomDB.Wish
 import com.example.myapplication.util.roomDB.WishDao
 import com.example.myapplication.util.roomDB.WishDatabase
@@ -49,7 +51,7 @@ class MainActivity : AppCompatActivity() {
 
 
         CoroutineScope(Dispatchers.IO).launch {
-            val wishList = viewModel.getAlreadyWishList()
+            val wishList = viewModel.getWishElse()
             if(wishList.isEmpty()) {
                 wishListAdapter = WishListAdapter(mutableListOf())
             }   else{
@@ -77,9 +79,14 @@ class MainActivity : AppCompatActivity() {
 
                 withContext(Dispatchers.Main){
                     wishListAdapter.items.add(todayWish.wishContent)
-                    wishListAdapter.notifyItemInserted(0)
+                    wishListAdapter.notifyDataSetChanged()
                 }
             }
+        }
+
+        binding.constraintMainMyWishTab.setOnClickListener{
+            val intent = Intent(this, MyWishActivity::class.java)
+            startActivity(intent)
         }
     }
 }

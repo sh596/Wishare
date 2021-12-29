@@ -5,7 +5,13 @@
       <map>
         <entry key="..\:/Users/Zen/AndroidStudioProjects/MyApplication22/app/src/main/res/drawable/ic_logo.xml" value="0.13333333333333333" />
         <entry key="..\:/Users/Zen/AndroidStudioProjects/MyApplication22/app/src/main/res/layout/activity_login.xml" value="0.1171875" />
+        <entry key="..\:/Users/Zen/AndroidStudioProjects/WishareProject4/app/src/main/res/drawable/default_round_10_gradint.xml" value="0.10416666666666667" />
+        <entry key="..\:/Users/Zen/AndroidStudioProjects/WishareProject4/app/src/main/res/drawable/round_background.xml" value="0.1109375" />
+        <entry key="..\:/Users/Zen/AndroidStudioProjects/WishareProject4/app/src/main/res/drawable/round_background_color.xml" value="0.1109375" />
+        <entry key="..\:/Users/Zen/AndroidStudioProjects/WishareProject4/app/src/main/res/layout/activity_create_wish.xml" value="0.2" />
+        <entry key="..\:/Users/Zen/AndroidStudioProjects/WishareProject4/app/src/main/res/layout/activity_input_wish.xml" value="0.10733695652173914" />
         <entry key="..\:/Users/Zen/AndroidStudioProjects/WishareProject4/app/src/main/res/layout/activity_main.xml" value="0.11367753623188406" />
+<<<<<<< HEAD
         <entry key="..\:/Users/Zen/AndroidStudioProjects/WishareProject4/app/src/main/res/layout/activity_my_wish.xml" value="0.2" />
 <<<<<<< HEAD
 =======
@@ -17,6 +23,12 @@
         <entry key="..\:/Users/user/AndroidStudioProjects/WishareProject/app/src/main/res/layout/layout_wish_list_item.xml" value="0.12962962962962962" />
         <entry key="..\:/Users/user/AndroidStudioProjects/WishareProject/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.16574074074074074" />
 >>>>>>> Room
+=======
+        <entry key="..\:/Users/Zen/AndroidStudioProjects/WishareProject4/app/src/main/res/layout/activity_my_wish.xml" value="0.152" />
+        <entry key="..\:/Users/Zen/AndroidStudioProjects/WishareProject4/app/src/main/res/layout/activity_my_wish_list.xml" value="0.2" />
+        <entry key="..\:/Users/Zen/AndroidStudioProjects/WishareProject4/app/src/main/res/layout/item_wish.xml" value="0.176" />
+        <entry key="..\:/Users/Zen/AndroidStudioProjects/WishareProject4/app/src/main/res/layout/layout_my_wish_list_item.xml" value="0.10733695652173914" />
+>>>>>>> d7eb77294e325f761df3ab8fbbb26f94c5821b16
       </map>
     </option>
   </component>

@@ -26,9 +26,10 @@ class MyWishViewModel(private val context: Context) : ViewModel() {
             Log.d(TAG, "setList: ${myWishList.value}")
         }
     }
-//    fun remove(item: Wish){
-//        viewModelScope.launch(Dispatchers.IO) {
-//            WishDatabase.getInstance(context).wishDao().delete(item)
-//        }
-//    }
+
+    fun remove(item: Wish) {
+        viewModelScope.launch(Dispatchers.IO) {
+            WishDatabase.getInstance(context).wishDao().delete(item)
+        }
+    }
 }

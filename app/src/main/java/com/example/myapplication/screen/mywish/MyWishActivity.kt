@@ -19,7 +19,7 @@ class MyWishActivity : AppCompatActivity() {
     }
 
     val itemClick: (Wish) -> Unit = { item : Wish ->
-//        viewModel.remove(item)
+        viewModel.remove(item)
     }
 
     private val adapter = MyWishAdapter(itemClick)

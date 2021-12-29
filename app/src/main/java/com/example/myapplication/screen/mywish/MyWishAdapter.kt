@@ -17,6 +17,7 @@ class MyWishAdapter( val clickItem:(Wish) -> Unit): RecyclerView.Adapter<MyWishA
 
             binding.root.setOnClickListener {
                 clickItem(item)
+                list.removeAt(position)
                 notifyItemRemoved(position)
             }
         }
